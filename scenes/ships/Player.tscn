@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/ships/Ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ControllableShip.gd" type="Script" id=2]
+[ext_resource path="res://resources/graphics.png" type="Texture" id=3]
+[ext_resource path="res://scenes/weapons/Blaster.tscn" type="PackedScene" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
+atlas = ExtResource( 3 )
+region = Rect2( 0.5, 0, 16, 16 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.00877193, 0.421053, 1 )
+colors = PoolColorArray( 1, 0.437775, 0.191406, 1, 0.357614, 0.247192, 0.703125, 1, 1, 1, 1, 0 )
+
+[node name="Player" instance=ExtResource( 1 )]
+texture = SubResource( 1 )
+script = ExtResource( 2 )
+weapon_scene = ExtResource( 4 )
+trace_gradient = SubResource( 2 )
+trace_width = 16.0
+
+[node name="Camera" type="Camera2D" parent="." index="0"]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+smoothing_enabled = true
+smoothing_speed = 8.0
+
+[node name="StaticBody" parent="." index="1"]
+collision_layer = 3

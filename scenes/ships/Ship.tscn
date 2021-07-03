@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/graphics.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Ship.gd" type="Script" id=2]
+[ext_resource path="res://resources/light.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+resource_local_to_scene = true
+atlas = ExtResource( 1 )
+region = Rect2( 0.5, 0, 16, 16 )
+
+[node name="Ship" type="Node2D"]
+scale = Vector2( 4, 4 )
+script = ExtResource( 2 )
+trace_width = 0.0
+
+[node name="StaticBody" type="StaticBody2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="StaticBody"]
+shape = SubResource( 1 )
+
+[node name="Shadow" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0.317647 )
+scale = Vector2( 0.025, 0.025 )
+texture = ExtResource( 3 )
+
+[node name="Ship" type="Sprite" parent="."]
+texture = SubResource( 2 )
