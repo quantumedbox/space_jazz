@@ -1,7 +1,7 @@
 class_name Weapon
 extends Node
 
-const _bulletScene = preload('res://scenes/weapons/Bullet.tscn')
+export(PackedScene) var _projectileScene
 
 var _cooldown: float = 0
 var _firing: bool = false
@@ -16,9 +16,10 @@ var bullet_lifespan: float = 2.0
 # bullets per second
 var attack_speed: float = 1.0
 # each types of targets should recieve the damage
-enum {DAMAGE_ENEMIES, DAMAGE_PLAYERS}
+enum {DAMAGE_ENEMIES = 1, DAMAGE_PLAYERS = 2}
 var damage_mask: int = 0
 
+const DAMAGE_ENEMIES_COLOR: Color = Color(0, 0.337255, 1, 0.5)
 const DAMAGE_PLAYERS_COLOR: Color = Color(0.7, 0.2, 0.1, 0.5)
 
 
@@ -39,15 +40,8 @@ func _process(delta: float) -> void:
 
 func fire():
 	var base: Node2D = get_parent()
-	var bullet = self._bulletScene.instance()
-	var rotation: float = base.rotation + deg2rad((randf()-0.5)*2 * spread)
-	bullet.position = base.position
-	bullet.rotation = rotation
-	bullet.initial_velocity = base.spatial_velocity
-	bullet.velocity = Vector2.UP.rotated(rotation) * starting_velocity
-	bullet.lifespan = bullet_lifespan
-	base.spatial_velocity -= Vector2.UP.rotated(base.rotation) * impulse
-	GameScope.add_child(bullet)
-
-	if damage_mask & DAMAGE_PLAYERS:
-		bullet.get_node('Backlight').self_modulate = DAMAGE_PLAYERS_COLOR
+	var projectile = self._projectileScene.instance()
+	projectile._init_projectile(base, self)	
+	GameScope.add_child(projectile)
+	base.spatial_velocity -= (Vector2.UP.rotated(base.rotation) * impulse *
+		base.size_effect_on_impulse.interpolate(base.size))

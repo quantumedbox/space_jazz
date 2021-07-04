@@ -2,6 +2,10 @@ class_name ControllableShip
 extends Ship
 
 
+func _ready() -> void:
+	weapon.damage_mask |= Weapon.DAMAGE_ENEMIES
+
+
 func process_intent(event: InputEvent, action: String, bit: int) -> void:
 	if event.is_action(action):
 		if event.is_pressed():
