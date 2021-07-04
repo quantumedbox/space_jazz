@@ -1,14 +1,7 @@
 class_name Bullet
-extends Node2D
+extends SpaceObj
 
 # todo: separate 'projectile' class ?
-
-var initial_velocity: Vector2 = Vector2.ZERO
-var velocity: Vector2 = Vector2.ZERO
-
-# specifies velocity vector length that should be accelerated
-var speeding_up_threshold: float = 0.0
-var speeding_up_speed: float = 100.0
 
 # time in seconds
 var lifespan: float = 1.0
@@ -20,8 +13,8 @@ func _init_projectile(base, weapon) -> void:
 	var spreaded: float = base.rotation + deg2rad((randf()-0.5)*2 * weapon.spread)
 	position = base.position
 	rotation = spreaded
-	initial_velocity = base.spatial_velocity
-	velocity = Vector2.UP.rotated(spreaded) * weapon.starting_velocity
+	spatial_velocity = (base.spatial_velocity +
+		Vector2.UP.rotated(spreaded) * weapon.starting_velocity)
 	lifespan = weapon.bullet_lifespan
 
 	scale *= size_effect_on_bullet_size.interpolate(base.size)
@@ -33,9 +26,7 @@ func _init_projectile(base, weapon) -> void:
 
 
 func _process(delta: float) -> void:
-	if (velocity + initial_velocity).distance_to(Vector2.ZERO) < speeding_up_threshold:
-		velocity += velocity.normalized() * speeding_up_speed * delta
-	position += (velocity + initial_velocity) * delta
+	._process(delta)
 	lifespan -= delta
 	if lifespan <= 0.0:
 		queue_free()

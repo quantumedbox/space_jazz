@@ -11,7 +11,7 @@ const RANDOM_SIZE_MAX_CHANGE: float = 1.0
 func _ready() -> void:
 	._ready()
 	size += (0.5 - randf()) * RANDOM_SIZE_MAX_CHANGE
-	acceleration_change = 120.0
+	acceleration = 120.0
 	angular_velocity_change = 1.2
 	weapon.damage_mask |= Weapon.DAMAGE_PLAYERS
 

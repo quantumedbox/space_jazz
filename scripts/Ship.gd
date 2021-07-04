@@ -1,16 +1,10 @@
+extends SpaceObj
 class_name Ship
-extends Node2D
 
 # impact of stabilization
 var angular_stability_change: float = 3.0
 var angular_velocity_change: float = 7.0
-var acceleration_change: float = 200.0
-var deacceleration_change: float = 0.08
-
-# constant change of angle
-var angular_velocity: float = 0.0
-var max_velocity: float = 500.0
-var spatial_velocity: Vector2 = Vector2(0, 0)
+var acceleration: float = 100.0
 
 # size is always clamped to [0.1, 1]
 var size: float = 0.5
@@ -86,17 +80,11 @@ func _process(delta: float) -> void:
 		angular_velocity -= (angular_velocity_change * delta *
 			size_effect_on_rotation.interpolate(size))
 	if intent & ACCELERATE:
-		spatial_velocity += (Vector2.UP.rotated(rotation) * acceleration_change * delta *
+		spatial_velocity += (Vector2.UP.rotated(rotation) * acceleration * delta *
 			size_effect_on_acceleration.interpolate(size))
 	if spatial_velocity.length() > max_velocity:
 		spatial_velocity -= spatial_velocity / (spatial_velocity.length() /
 			(spatial_velocity.length() - max_velocity))
-
-	position += spatial_velocity * delta
-	spatial_velocity -= (spatial_velocity *
-		clamp((spatial_velocity / deacceleration_change).length(), 0.0, 1.0)
-		* deacceleration_change * delta)
-	rotation += angular_velocity * delta
 
 	if intent & SIZE_UP:
 		target_size += SIZE_CHANGE * delta
@@ -110,6 +98,8 @@ func _process(delta: float) -> void:
 	var size_change = lerp(size, target_size, SIZE_LERP * delta) - size
 	size += size_change
 	scale += Vector2(size_change * size_effect, size_change * size_effect)
+
+	._process(delta)
 
 	_point_timing -= delta
 	if _point_timing <= 0.0:

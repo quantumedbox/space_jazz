@@ -4,7 +4,7 @@ const BEAM_LENGTH: float = 900.0
 const BEAM_WIDTH: float = 24.0
 
 const AREA_RADIUS: float = 200.0
-const MAGNIFICATION: float = 600.0
+const MAGNIFICATION: float = 1.5
 # what types of object should be affected
 const MAGNIFICATION_MASK: int = 1
 
@@ -36,5 +36,4 @@ func activate_ability() -> void:
 	var bodies = area.get_overlapping_bodies()
 	for body in bodies:
 		var body_base = body.get_parent()
-		print((body_base.position - area.position) * MAGNIFICATION)
-		body_base.spatial_velocity -= (area.position - body_base.position) * MAGNIFICATION
+		body_base.spatial_velocity = -(body_base.position - area.position) / 2
