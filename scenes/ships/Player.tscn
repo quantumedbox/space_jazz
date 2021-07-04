@@ -16,6 +16,7 @@ region = Rect2( 0.5, 0, 16, 16 )
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+type = 3
 weapon_scene = ExtResource( 4 )
 trace_gradient = SubResource( 1 )
 trace_width = 16.0
@@ -26,8 +27,8 @@ zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
 smoothing_speed = 8.0
 
-[node name="StaticBody" parent="." index="1"]
-collision_layer = 3
+[node name="Area" parent="." index="1"]
+collision_layer = 15
 
 [node name="Ship" parent="." index="3"]
 texture = SubResource( 2 )

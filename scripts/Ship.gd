@@ -1,10 +1,12 @@
 extends SpaceObj
 class_name Ship
 
+const debrisScene = preload('res://scenes/Debris.tscn')
+
 # impact of stabilization
 var angular_stability_change: float = 3.0
-var angular_velocity_change: float = 7.0
-var acceleration: float = 100.0
+var angular_velocity_change: float = 9.5
+var acceleration: float = 260.0
 
 # size is always clamped to [0.1, 1]
 var size: float = 0.5
@@ -46,6 +48,7 @@ var intent: int = 0
 
 
 func _ready() -> void:
+#	$Area.collision_layer = type
 	# for some reason sometimes curves are not instanced from parent scene, i dunno
 	for curve in ['size_effect_on_impulse',
 				  'size_effect_on_acceleration',
@@ -68,6 +71,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	var collisions = $Area.get_overlapping_areas()
+	for case in collisions:
+		var case_base = case.get_parent()
+		if case.collision_layer & type and case_base is SpaceObj:
+			case_base.collide_with(self)
+
 	if angular_velocity > 0:
 		angular_velocity -= min(angular_velocity, angular_stability_change) * delta		
 	else:
@@ -99,7 +108,7 @@ func _process(delta: float) -> void:
 	size += size_change
 	scale += Vector2(size_change * size_effect, size_change * size_effect)
 
-	._process(delta)
+#	._process(delta)
 
 	_point_timing -= delta
 	if _point_timing <= 0.0:
@@ -111,8 +120,20 @@ func _process(delta: float) -> void:
 	weapon.toggle_ability(intent & ABILITY)
 
 
-func receive_damage(n: float) -> void:
-	pass
+func death() -> void:
+	for _i in range(3):
+		var debris = debrisScene.instance()
+		debris.spatial_velocity = (
+			spatial_velocity.normalized().rotated((0.5 - randf() * 2 * deg2rad(15))) *
+				spatial_velocity)
+		GameScope.add_child(debris)
+	queue_free()
+
+
+func receive_damage(dmg: float) -> void:
+	health -= dmg
+	if health < 0:
+		death()
 
 
 func _exit_tree() -> void:

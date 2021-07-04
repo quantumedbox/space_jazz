@@ -21,6 +21,7 @@ func _ready() -> void:
 	for i in range(len(_weapon_list)):
 		_weapon_list[i] = _weapon_list[i].instance()
 		_weapon_list[i].base = get_parent()
+		_weapon_list[i].damage_mask = damage_mask
 #		_weapon_list[i]._init()
 		_weapon_list[i]._ready()
 	_current = _weapon_list[0]
@@ -38,8 +39,8 @@ func fire():
 	_current.fire()
 
 
-func activate_ability():
-	_current.activate_ability()
+func activate_ability(at: Vector2):
+	_current.activate_ability(at)
 
 
 func switch(i = -1):

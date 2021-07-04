@@ -9,7 +9,7 @@ max_value = 3.0
 _data = [ Vector2( 0, 0.887755 ), 0.0, -0.946255, 0, 0, Vector2( 0.485772, 1.29592 ), 2.61061, 2.61061, 0, 0, Vector2( 1, 2.56122 ), -1.4567, 0.0, 0, 0 ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 6.12367
+radius = 8.26121
 
 [sub_resource type="AtlasTexture" id=3]
 resource_local_to_scene = true
@@ -20,7 +20,10 @@ region = Rect2( 16, 0, 16, 16 )
 script = ExtResource( 3 )
 size_effect_on_bullet_size = SubResource( 1 )
 
-[node name="Body" type="StaticBody2D" parent="."]
+[node name="Body" type="Area2D" parent="."]
+input_pickable = false
+monitoring = false
+collision_layer = 0
 
 [node name="Collider" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 2 )

@@ -19,9 +19,15 @@ var bullet_lifespan: float = 2.0
 var attack_speed: float = 1.0
 # activations per second
 var ability_speed: float = 0.5
+var damage: float = 0.5
 # each types of targets should recieve the damage
-enum {DAMAGE_ENEMIES = 1, DAMAGE_PLAYERS = 2}
-var damage_mask: int = 0
+enum Damage {
+	NO 		= 0b000,
+	ANY 	= 0b001,
+	PLAYER 	= 0b010,
+	ENEMY 	= 0b100,
+}
+export(Damage) var damage_mask = Damage.NO
 
 const DAMAGE_ENEMIES_COLOR: Color = Color(0, 0.337255, 1, 0.5)
 const DAMAGE_PLAYERS_COLOR: Color = Color(0.7, 0.2, 0.1, 0.5)
@@ -52,7 +58,7 @@ func _process(delta: float) -> void:
 	if _abiliting:
 		_abiliting_cooldown -= delta
 		if _abiliting_cooldown <= 0.0:
-			activate_ability()
+			activate_ability((base.get_viewport().size / 2) - base.get_viewport().get_mouse_position())
 			_abiliting_cooldown += 1 / ability_speed
 	else:
 		_abiliting_cooldown = max(_abiliting_cooldown - delta, 0)
@@ -66,5 +72,5 @@ func fire() -> void:
 		base.size_effect_on_impulse.interpolate(base.size))
 
 
-func activate_ability() -> void:
+func activate_ability(at: Vector2) -> void:
 	pass

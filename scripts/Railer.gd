@@ -25,15 +25,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	._process(delta)
 	area.position = (Player.position + Player.get_node('Camera').position -
-		((base.get_viewport().size / 2) - base.get_viewport().get_mouse_position()))
+		((base.get_viewport().size / 2) - base.get_viewport().get_mouse_position()) * 2)
 
 
 func _exit_tree() -> void:
 	area.queue_free()
 
 
-func activate_ability() -> void:
-	var bodies = area.get_overlapping_bodies()
+func activate_ability(_at) -> void:
+	var bodies = area.get_overlapping_areas()
 	for body in bodies:
 		var body_base = body.get_parent()
-		body_base.spatial_velocity = -(body_base.position - area.position) / 2
+		body_base.spatial_velocity = -(body_base.position - area.position) / 1.8

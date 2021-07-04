@@ -1,34 +1,36 @@
 extends Ship
 
 # target velocity length
-const TARGETING_SPEED: float = 150.0
+const TARGETING_SPEED: float = 270.0
 # prevent collisions with other objects
-const BAIL_DISTANCE: float = 60.0
+const BAIL_DISTANCE: float = 4.0
 const FIRE_DISTANCE: float = 560.0
 
-const RANDOM_SIZE_MAX_CHANGE: float = 1.0
+const RANDOM_SIZE_MAX_CHANGE: float = 0.5
+
 
 func _ready() -> void:
-	._ready()
+#	._ready()
 	size += (0.5 - randf()) * RANDOM_SIZE_MAX_CHANGE
-	acceleration = 120.0
-	angular_velocity_change = 1.2
-	weapon.damage_mask |= Weapon.DAMAGE_PLAYERS
+	acceleration = 330.0
+	angular_velocity_change = 4.6
+	weapon.damage_mask = Weapon.Damage.PLAYER
+
 
 func _process(delta: float) -> void:
-	var target = Player.position - position
+	if not get_node('/root/Game').player_alive:
+		return
 
 	$Sight.cast_to = -(spatial_velocity.normalized().rotated(-rotation)) * BAIL_DISTANCE
 
 	var dot: float = spatial_velocity.normalized().dot(Vector2.UP.rotated(rotation))
 
-#	if spatial_velocity.length() - (TARGETING_SPEED * dot) < TARGETING_SPEED:
 	if spatial_velocity.length() < TARGETING_SPEED + (dot * sign(dot)) * TARGETING_SPEED:
 		intent |= ACCELERATE
 	elif intent & ACCELERATE:
 		intent ^= ACCELERATE
 
-	var target_dot = Vector2.UP.rotated(rotation).angle_to(target)
+	var target_dot = Vector2.UP.rotated(rotation).angle_to(Player.position - position)
 
 	if target_dot > 0.0:
 		intent |= ROTATE_CLOCKWISE
@@ -46,5 +48,8 @@ func _process(delta: float) -> void:
 	if $Sight.is_colliding():
 		intent |= ROTATE_ANTICLOCKWISE
 		intent ^= ACCELERATE
+		intent |= ABILITY
+	elif intent & ABILITY:
+		intent ^= ABILITY
 
-	._process(delta)
+#	._process(delta)

@@ -8,10 +8,12 @@ const DASH_IMPULSE: float = 240.0
 
 
 func _ready() -> void:
+	damage = 0.5
 	bullet_lifespan = 2.1
 	impulse = 16.0
-	starting_velocity = 330.0
+	starting_velocity = 640.0
 	spread = 3.2
+	ability_speed = 0.8
 
 
 func _process(delta: float) -> void:
@@ -21,8 +23,8 @@ func _process(delta: float) -> void:
 	._process(delta)
 
 
-func activate_ability() -> void:
+func activate_ability(at: Vector2) -> void:
 	base.spatial_velocity += (
-		-((base.get_viewport().size / 2) - base.get_viewport().get_mouse_position()).normalized() *
+		-at.normalized() *
 		DASH_IMPULSE *
 		base.size_effect_on_impulse.interpolate(base.size))

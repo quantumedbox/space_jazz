@@ -6,4 +6,5 @@
 
 [node name="WeaponContext" type="Node"]
 script = ExtResource( 1 )
+damage_mask = 4
 _weapon_list = [ ExtResource( 2 ), ExtResource( 3 ) ]

@@ -11,7 +11,7 @@ _data = [ Vector2( 0, 1.51701 ), 0.0, -0.390476, 0, 0, Vector2( 0.493902, 1 ), -
 
 [sub_resource type="Curve" id=2]
 max_value = 2.0
-_data = [ Vector2( 0, 2 ), 0.0, 0.280582, 0, 0, Vector2( 0.493902, 1.02041 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.707483 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1.32653 ), 0.0, 0.280582, 0, 0, Vector2( 0.493902, 1.02041 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.707483 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.702381 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.358844 ), -0.427269, 0.0, 0, 0 ]
@@ -32,9 +32,11 @@ size_effect_on_impulse = SubResource( 1 )
 size_effect_on_acceleration = SubResource( 2 )
 size_effect_on_rotation = SubResource( 3 )
 
-[node name="StaticBody" type="StaticBody2D" parent="."]
+[node name="Area" type="Area2D" parent="."]
+input_pickable = false
+collision_layer = 0
 
-[node name="Collider" type="CollisionShape2D" parent="StaticBody"]
+[node name="Collider" type="CollisionShape2D" parent="Area"]
 shape = SubResource( 4 )
 
 [node name="Shadow" type="Sprite" parent="."]
