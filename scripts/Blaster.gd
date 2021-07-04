@@ -1,19 +1,28 @@
 extends Weapon
 
 var base_attack_speed: float = 5.0
-const rotation_effect: float = 15.0
-const rotation_effect_max: float = 7.0
+const ROTATION_EFFECT: float = 19.0
+const ROTATION_EFFECT_MAX_AT: float = 7.5
 
-onready var base: Ship = get_parent()
+const DASH_IMPULSE: float = 475.0
+
 
 func _ready() -> void:
-	bullet_lifespan = 2.0
-	impulse = 15.0
-	starting_velocity = 550.0
-	spread = 3.0
+	bullet_lifespan = 2.1
+	impulse = 16.0
+	starting_velocity = 530.0
+	spread = 3.2
 
 
 func _process(delta: float) -> void:
-	attack_speed = base_attack_speed + (rotation_effect *
-		clamp((base.angular_velocity * sign(base.angular_velocity)) / rotation_effect_max, 0.0, 1.0))
+	attack_speed = base_attack_speed + (ROTATION_EFFECT *
+		clamp((base.angular_velocity * sign(base.angular_velocity)) /
+			ROTATION_EFFECT_MAX_AT, 0.0, 1.0))
 	._process(delta)
+
+
+func activate_ability() -> void:
+	base.spatial_velocity += (
+		-((base.get_viewport().size / 2) - base.get_viewport().get_mouse_position()).normalized() *
+		DASH_IMPULSE *
+		base.size_effect_on_impulse.interpolate(base.size))

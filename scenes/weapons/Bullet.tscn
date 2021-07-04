@@ -4,26 +4,26 @@
 [ext_resource path="res://resources/light.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Bullet.gd" type="Script" id=3]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=1]
 max_value = 3.0
 _data = [ Vector2( 0, 0.887755 ), 0.0, -0.946255, 0, 0, Vector2( 0.485772, 1.29592 ), 2.61061, 2.61061, 0, 0, Vector2( 1, 2.56122 ), -1.4567, 0.0, 0, 0 ]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 6.12367
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 resource_local_to_scene = true
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource( 3 )
-size_effect_on_bullet_size = SubResource( 3 )
+size_effect_on_bullet_size = SubResource( 1 )
 
 [node name="Body" type="StaticBody2D" parent="."]
 
 [node name="Collider" type="CollisionShape2D" parent="Body"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Backlight" type="Sprite" parent="."]
 self_modulate = Color( 0, 0.337255, 1, 0.368627 )
@@ -31,4 +31,4 @@ scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
 [node name="Projectile" type="Sprite" parent="."]
-texture = SubResource( 2 )
+texture = SubResource( 3 )

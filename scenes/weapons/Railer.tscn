@@ -6,3 +6,4 @@
 [node name="Railer" type="Node"]
 script = ExtResource( 1 )
 _projectileScene = ExtResource( 2 )
+icon = 1

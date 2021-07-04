@@ -21,3 +21,4 @@ func _input(event: InputEvent) -> void:
 	process_intent(event, 'attack', ATTACK)
 	process_intent(event, 'size_up', SIZE_UP)
 	process_intent(event, 'size_down', SIZE_DOWN)
+	process_intent(event, 'ability', ABILITY)

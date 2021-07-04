@@ -4,7 +4,7 @@ extends Node2D
 # impact of stabilization
 var angular_stability_change: float = 3.0
 var angular_velocity_change: float = 7.0
-var acceleration_change: float = 175.0
+var acceleration_change: float = 200.0
 var deacceleration_change: float = 0.08
 
 # constant change of angle
@@ -42,8 +42,9 @@ enum {
 	ROTATE_ANTICLOCKWISE = 2,
 	ACCELERATE = 4,
 	ATTACK = 8,
-	SIZE_UP = 16,
-	SIZE_DOWN = 32,
+	ABILITY = 16,
+	SIZE_UP = 32,
+	SIZE_DOWN = 64,
 }
 
 # bit mask of control intents
@@ -117,7 +118,12 @@ func _process(delta: float) -> void:
 		trace.add_point(position, 0)
 
 	weapon.toggle_fire(intent & ATTACK)
+	weapon.toggle_ability(intent & ABILITY)
 
 
 func receive_damage(n: float) -> void:
 	pass
+
+
+func _exit_tree() -> void:
+	trace.queue_free()

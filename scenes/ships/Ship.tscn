@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/graphics.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Ship.gd" type="Script" id=2]
 [ext_resource path="res://resources/light.png" type="Texture" id=3]
+[ext_resource path="res://scenes/weapons/Blaster.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve" id=1]
 max_value = 2.0
@@ -10,7 +11,7 @@ _data = [ Vector2( 0, 1.51701 ), 0.0, -0.390476, 0, 0, Vector2( 0.493902, 1 ), -
 
 [sub_resource type="Curve" id=2]
 max_value = 2.0
-_data = [ Vector2( 0, 1.70068 ), 0.0, 0.0, 0, 0, Vector2( 0.493902, 1.02041 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.693878 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 2 ), 0.0, 0.280582, 0, 0, Vector2( 0.493902, 1.02041 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.707483 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.702381 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.358844 ), -0.427269, 0.0, 0, 0 ]
@@ -25,6 +26,7 @@ region = Rect2( 0.5, 0, 16, 16 )
 [node name="Ship" type="Node2D"]
 scale = Vector2( 4, 4 )
 script = ExtResource( 2 )
+weapon_scene = ExtResource( 4 )
 trace_width = 0.0
 size_effect_on_impulse = SubResource( 1 )
 size_effect_on_acceleration = SubResource( 2 )

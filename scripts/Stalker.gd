@@ -6,8 +6,11 @@ const TARGETING_SPEED: float = 150.0
 const BAIL_DISTANCE: float = 60.0
 const FIRE_DISTANCE: float = 560.0
 
+const RANDOM_SIZE_MAX_CHANGE: float = 1.0
+
 func _ready() -> void:
 	._ready()
+	size += (0.5 - randf()) * RANDOM_SIZE_MAX_CHANGE
 	acceleration_change = 120.0
 	angular_velocity_change = 1.2
 	weapon.damage_mask |= Weapon.DAMAGE_PLAYERS

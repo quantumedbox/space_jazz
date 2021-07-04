@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ships/Stalker.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Background.gd" type="Script" id=2]
-[ext_resource path="res://resources/graphics.png" type="Texture" id=3]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 octaves = 6
@@ -11,11 +10,6 @@ period = 141.5
 [sub_resource type="NoiseTexture" id=2]
 seamless = true
 noise = SubResource( 1 )
-
-[sub_resource type="AtlasTexture" id=3]
-resource_local_to_scene = true
-atlas = ExtResource( 3 )
-region = Rect2( 0, 16, 16, 16 )
 
 [node name="Game" type="Node2D"]
 
@@ -59,22 +53,3 @@ trace_width = 16.0
 size_effect_on_impulse = null
 size_effect_on_acceleration = null
 size_effect_on_rotation = null
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="Base" type="Node2D" parent="HUD"]
-modulate = Color( 1, 1, 1, 0.705882 )
-
-[node name="WeaponIcon" type="Sprite" parent="HUD/Base"]
-position = Vector2( 72, 64 )
-scale = Vector2( 4, 4 )
-texture = SubResource( 3 )
-
-[node name="Damage" type="ProgressBar" parent="HUD"]
-margin_left = 16.0
-margin_top = 96.0
-margin_right = 128.0
-margin_bottom = 126.0
-__meta__ = {
-"_edit_use_anchors_": false
-}

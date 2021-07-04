@@ -1,27 +1,26 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ships/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/graphics.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Stalker.gd" type="Script" id=3]
-[ext_resource path="res://scenes/weapons/Blaster.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.192982, 1 )
 colors = PoolColorArray( 0.539063, 0, 0.303223, 1, 1, 1, 1, 0 )
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=2]
+max_value = 2.0
+_data = [ Vector2( 0, 1.21088 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.693878 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 resource_local_to_scene = true
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 16, 16 )
 
 [node name="Stalker" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-weapon_scene = ExtResource( 4 )
 trace_gradient = SubResource( 1 )
-size_effect_on_impulse = SubResource( 3 )
+size_effect_on_impulse = SubResource( 2 )
 
 [node name="Sight" type="RayCast2D" parent="." index="0"]
 rotation = 3.14159
@@ -33,4 +32,4 @@ collision_mask = 2
 collision_layer = 3
 
 [node name="Ship" parent="." index="3"]
-texture = SubResource( 2 )
+texture = SubResource( 3 )

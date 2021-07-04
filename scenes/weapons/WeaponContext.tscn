@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/WeaponContext.gd" type="Script" id=1]
+[ext_resource path="res://scenes/weapons/Blaster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/weapons/Railer.tscn" type="PackedScene" id=3]
+
+[node name="WeaponContext" type="Node"]
+script = ExtResource( 1 )
+_weapon_list = [ ExtResource( 2 ), ExtResource( 3 ) ]
