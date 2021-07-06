@@ -57,8 +57,9 @@ func _ready() -> void:
 			set(curve, Curve.new())
 			get(curve).add_point(Vector2(0.0, 1.0))
 
-	weapon = weapon_scene.instance()
-	add_child(weapon)
+	if weapon_scene != null:
+		weapon = weapon_scene.instance()
+		add_child(weapon)
 
 	trace = Line2D.new()
 #	trace.points = PoolVector2Array([Vector2.ZERO] * POINT_COUNT)
@@ -116,8 +117,9 @@ func _process(delta: float) -> void:
 		trace.remove_point(trace.get_point_count()-1)
 		trace.add_point(position, 0)
 
-	weapon.toggle_fire(intent & ATTACK)
-	weapon.toggle_ability(intent & ABILITY)
+	if weapon != null:
+		weapon.toggle_fire(intent & ATTACK)
+		weapon.toggle_ability(intent & ABILITY)
 
 
 func death() -> void:

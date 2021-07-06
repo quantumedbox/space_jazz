@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ControllableShip.gd"
 }, {
-"base": "Node",
+"base": "CanvasLayer",
 "class": "HUD_cls",
 "language": "GDScript",
 "path": "res://scripts/HUD.gd"
@@ -50,7 +50,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Sizable"
+config/name="space-jazz"
+config/description="fuck you"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://resources/icon.png"
 

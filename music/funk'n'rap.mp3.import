@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/funk'n'rap.mp3-fb17116ae6ca2f9f9a6e19947b9be740.mp3str"
+
+[deps]
+
+source_file="res://music/funk'n'rap.mp3"
+dest_files=[ "res://.import/funk'n'rap.mp3-fb17116ae6ca2f9f9a6e19947b9be740.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

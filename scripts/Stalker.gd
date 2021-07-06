@@ -14,7 +14,8 @@ func _ready() -> void:
 	size += (0.5 - randf()) * RANDOM_SIZE_MAX_CHANGE
 	acceleration = 330.0
 	angular_velocity_change = 4.6
-	weapon.damage_mask = Weapon.Damage.PLAYER
+	if weapon != null:
+		weapon.damage_mask = Weapon.Damage.PLAYER
 
 
 func _process(delta: float) -> void:

@@ -5,12 +5,15 @@ extends Ship
 func _ready() -> void:
 #	._ready()
 	randomize()
-	weapon.damage_mask = Weapon.Damage.ENEMY
+	if weapon != null:
+		weapon.damage_mask = Weapon.Damage.ENEMY
 
 
 func _process(delta: float) -> void:
 #	._process(delta)
 	Hud.set_health_percent(health / max_health)
+	if (max_velocity - spatial_velocity.length()) < 25.0:
+		Hud.add_shake(1.0)
 
 
 func process_intent(event: InputEvent, action: String, bit: int) -> void:
@@ -33,6 +36,7 @@ func _input(event: InputEvent) -> void:
 
 func receive_damage(dmg: float) -> void:
 	.receive_damage(dmg)
+	Hud.add_shake(dmg * 25)
 	Hud.set_health_percent(health / max_health)
 
 

@@ -11,7 +11,7 @@ export(Type) var type = Type.ANY
 
 # constant change of angle
 var angular_velocity: float = 0.0
-var max_velocity: float = 500.0
+var max_velocity: float = 600.0
 var spatial_velocity: Vector2 = Vector2(0, 0)
 
 var deacceleration: float = 0.08
