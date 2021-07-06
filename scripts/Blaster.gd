@@ -4,16 +4,16 @@ var base_attack_speed: float = 5.0
 const ROTATION_EFFECT: float = 19.0
 const ROTATION_EFFECT_MAX_AT: float = 7.5
 
-const DASH_IMPULSE: float = 240.0
+const DASH_IMPULSE: float = 270.0
 
 
 func _ready() -> void:
-	damage = 0.5
-	bullet_lifespan = 2.1
+	damage = 0.6
+	bullet_lifespan = 1.6
 	impulse = 16.0
-	starting_velocity = 640.0
-	spread = 3.2
-	ability_speed = 0.8
+	starting_velocity = 680.0
+	spread = 3.6
+	ability_speed = 0.5
 
 
 func _process(delta: float) -> void:

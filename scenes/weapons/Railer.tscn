@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Railer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/weapons/Beam.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sounds/railer_shot.mp3" type="AudioStream" id=3]
+[ext_resource path="res://scenes/weapons/Weapon.tscn" type="PackedScene" id=4]
 
-[node name="Railer" type="Node"]
+[node name="Railer" instance=ExtResource( 4 )]
 script = ExtResource( 1 )
 _projectileScene = ExtResource( 2 )
 icon = 1
+
+[node name="Player" parent="." index="0"]
+stream = ExtResource( 3 )

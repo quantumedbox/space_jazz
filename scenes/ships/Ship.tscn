@@ -4,19 +4,19 @@
 [ext_resource path="res://scripts/Ship.gd" type="Script" id=2]
 [ext_resource path="res://resources/light.png" type="Texture" id=3]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=1]
 max_value = 2.0
 _data = [ Vector2( 0, 1.46259 ), 0.0, 0.0, 0, 0, Vector2( 0.485772, 0.972789 ), -1.52134, -1.52134, 0, 0, Vector2( 1, 0.755102 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0.595238 ), 0.0, 0.0, 0, 0, Vector2( 0.485772, 0.486395 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.309524 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.64966 ), 0.0, 0.0, 0, 0, Vector2( 0.502033, 0.472789 ), -0.376531, -0.376531, 0, 0, Vector2( 1, 0.187075 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=4]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=5]
 resource_local_to_scene = true
 atlas = ExtResource( 1 )
 region = Rect2( 0.5, 0, 16, 16 )
@@ -24,16 +24,16 @@ region = Rect2( 0.5, 0, 16, 16 )
 [node name="Ship" type="Node2D"]
 scale = Vector2( 4, 4 )
 script = ExtResource( 2 )
-size_effect_on_impulse = SubResource( 3 )
-size_effect_on_acceleration = SubResource( 4 )
-size_effect_on_rotation = SubResource( 5 )
+size_effect_on_impulse = SubResource( 1 )
+size_effect_on_acceleration = SubResource( 2 )
+size_effect_on_rotation = SubResource( 3 )
 
 [node name="Area" type="Area2D" parent="."]
 input_pickable = false
 collision_layer = 0
 
 [node name="Collider" type="CollisionShape2D" parent="Area"]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Shadow" type="Sprite" parent="."]
 self_modulate = Color( 0, 0, 0, 0.317647 )
@@ -41,4 +41,4 @@ scale = Vector2( 0.025, 0.025 )
 texture = ExtResource( 3 )
 
 [node name="Ship" type="Sprite" parent="."]
-texture = SubResource( 2 )
+texture = SubResource( 5 )

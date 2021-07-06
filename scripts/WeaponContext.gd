@@ -10,9 +10,9 @@ func _input(event: InputEvent) -> void:
 		switch()
 
 
-func _process(delta: float) -> void:
-	for weapon in _weapon_list:
-		weapon._process(delta)
+func _process(_delta: float) -> void:
+#	for weapon in _weapon_list:
+#		weapon._process(delta)
 	Hud.set_weapon_cooldown_percent(_current._firing_cooldown / (1 / _current.attack_speed))
 	Hud.set_ability_cooldown_percent(_current._abiliting_cooldown / (1 / _current.ability_speed))
 
@@ -20,10 +20,11 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	for i in range(len(_weapon_list)):
 		_weapon_list[i] = _weapon_list[i].instance()
+		add_child(_weapon_list[i])
 		_weapon_list[i].base = get_parent()
 		_weapon_list[i].damage_mask = damage_mask
 #		_weapon_list[i]._init()
-		_weapon_list[i]._ready()
+		_weapon_list[i]._ready()	
 	_current = _weapon_list[0]
 
 

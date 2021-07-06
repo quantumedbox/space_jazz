@@ -1,6 +1,6 @@
 extends SpaceObj
 
-var lifespan: float = 10.0
+var lifespan: float = 15.0
 
 const HEAL: float = 2.0
 

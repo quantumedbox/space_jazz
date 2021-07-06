@@ -18,8 +18,9 @@ func _ready() -> void:
 		weapon.damage_mask = Weapon.Damage.PLAYER
 
 
-func _process(delta: float) -> void:
-	if not get_node('/root/Game').player_alive:
+func _process(_delta: float) -> void:
+	if not Player.alive:
+		intent = ACCELERATE
 		return
 
 	$Sight.cast_to = -(spatial_velocity.normalized().rotated(-rotation)) * BAIL_DISTANCE
@@ -53,4 +54,7 @@ func _process(delta: float) -> void:
 	elif intent & ABILITY:
 		intent ^= ABILITY
 
-#	._process(delta)
+
+func receive_damage(dmg: float) -> void:
+	SoundSystem.play_ping()
+	.receive_damage(dmg)

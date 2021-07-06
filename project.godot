@@ -60,6 +60,7 @@ config/icon="res://resources/icon.png"
 GameScope="*res://scenes/GameScope.tscn"
 Player="*res://scenes/ships/Player.tscn"
 Hud="*res://scenes/HUD.tscn"
+SoundSystem="*res://scenes/SoundSystem.tscn"
 
 [input]
 
@@ -110,7 +111,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=1
 vram_compression/import_etc=true

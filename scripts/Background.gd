@@ -13,9 +13,6 @@ func _ready() -> void:
 		node.texture = noise
 
 func _process(_delta: float) -> void:
-	if not get_node('/root/Game').player_alive:
-		return
-
 	var pos = Player.position
 
 	var quad_x_correction: float

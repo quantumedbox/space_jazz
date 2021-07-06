@@ -14,7 +14,12 @@ var _shake: float = 0.0
 var _rate: float = 0.0
 
 
+func _ready() -> void:
+	$GameOver/Restart.connect('pressed', Player, 'revive')
+
+
 func _process(delta: float) -> void:
+	$RadiusHint.position = get_viewport().get_mouse_position()
 	_rate -= delta
 	if _rate < 0:
 		_rate = 1 / SHAKE_RATE
@@ -30,8 +35,12 @@ func _process(delta: float) -> void:
 
 func change_weapon_icon(id: int) -> void:
 	if id == ICONS.BLASTER_ICON:
+		$WeaponName.text = "BLASTER"
+		$AbilityName.text = "DASH"
 		$Base/WeaponIcon.texture.region = Rect2(0, 16, 16, 16)
 	if id == ICONS.RAILER_ICON:
+		$WeaponName.text = "RAILER"
+		$AbilityName.text = "MAGNET"
 		$Base/WeaponIcon.texture.region = Rect2(16, 16, 16, 16)
 
 
@@ -56,5 +65,9 @@ func add_shake(amount: float) -> void:
 		_shake = SHAKE_LIMIT
 
 
-func game_over() -> void:
+func show_game_over() -> void:
 	$GameOver.show()
+
+
+func hide_game_over() -> void:
+	$GameOver.hide()

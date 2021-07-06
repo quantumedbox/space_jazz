@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/railer_shot.mp3-69ed0b664dd3ff3daaf08bbcedffb881.mp3str"
+
+[deps]
+
+source_file="res://sounds/railer_shot.mp3"
+dest_files=[ "res://.import/railer_shot.mp3-69ed0b664dd3ff3daaf08bbcedffb881.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

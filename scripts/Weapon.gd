@@ -65,6 +65,7 @@ func _process(delta: float) -> void:
 
 
 func fire() -> void:
+	$Player.play()
 	var projectile = _projectileScene.instance()
 	projectile._init_projectile(base, self)	
 	GameScope.add_child(projectile)
@@ -72,5 +73,5 @@ func fire() -> void:
 		base.size_effect_on_impulse.interpolate(base.size))
 
 
-func activate_ability(at: Vector2) -> void:
+func activate_ability(_at: Vector2) -> void:
 	pass

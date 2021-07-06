@@ -1,11 +1,11 @@
-extends SpaceObj
 class_name Ship
+extends SpaceObj
 
 const debrisScene = preload('res://scenes/Debris.tscn')
 
 # impact of stabilization
-var angular_stability_change: float = 3.0
-var angular_velocity_change: float = 9.5
+var angular_stability_change: float = 3.2
+var angular_velocity_change: float = 10.0
 var acceleration: float = 260.0
 
 # size is always clamped to [0.1, 1]
@@ -109,8 +109,6 @@ func _process(delta: float) -> void:
 	size += size_change
 	scale += Vector2(size_change * size_effect, size_change * size_effect)
 
-#	._process(delta)
-
 	_point_timing -= delta
 	if _point_timing <= 0.0:
 		_point_timing += 1 / TRACE_POINT_TIMING
@@ -123,13 +121,18 @@ func _process(delta: float) -> void:
 
 
 func death() -> void:
+	_spawn_debris()
+	SoundSystem.play_explosion()
+	queue_free()
+
+
+func _spawn_debris() -> void:
 	for _i in range(3):
 		var debris = debrisScene.instance()
-		debris.spatial_velocity = (
-			spatial_velocity.normalized().rotated((0.5 - randf() * 2 * deg2rad(15))) *
-				spatial_velocity)
+		debris.position = position
+		debris.spatial_velocity =  Vector2.UP.rotated(randf() * PI * 2) * 36
+		debris.angular_velocity = (0.5 - randf())*2 * 20
 		GameScope.add_child(debris)
-	queue_free()
 
 
 func receive_damage(dmg: float) -> void:

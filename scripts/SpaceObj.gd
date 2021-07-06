@@ -25,5 +25,5 @@ func _process(delta: float) -> void:
 	rotation += angular_velocity * delta
 
 
-func collide_with(obj: Object) -> void:
+func collide_with(_obj: Object) -> void:
 	pass

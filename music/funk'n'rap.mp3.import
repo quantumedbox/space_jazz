@@ -11,5 +11,5 @@ dest_files=[ "res://.import/funk'n'rap.mp3-fb17116ae6ca2f9f9a6e19947b9be740.mp3s
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
