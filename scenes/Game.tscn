@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/ships/Stalker.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Background.gd" type="Script" id=2]
 
 [sub_resource type="OpenSimplexNoise" id=1]
@@ -32,9 +31,3 @@ z_index = -1
 [node name="Bottomright" type="Sprite" parent="Background"]
 position = Vector2( -512, -302 )
 z_index = -1
-
-[node name="Stalker" parent="." instance=ExtResource( 1 )]
-position = Vector2( -432, -48 )
-
-[node name="Stalker2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -272, -48 )

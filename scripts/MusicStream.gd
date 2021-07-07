@@ -5,6 +5,7 @@ var _current_track: int = -1
 
 
 func _ready() -> void:
+	_current_track = randi() % (len(_tracks) + 1)
 	switch()
 	if connect('finished', self, 'switch') != OK:
 		push_error("cannot initialize music stream")

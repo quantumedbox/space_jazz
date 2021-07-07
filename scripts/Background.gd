@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 	else:
 		quad_y_correction = -(size.y / 2)
 
+	# ignore INTEGER_DIVISION
 	var quad_pos = Vector2(
 		(int(pos.x + quad_x_correction) / int(size.x)) * size.x,
 		(int(pos.y + quad_y_correction) / int(size.y)) * size.y

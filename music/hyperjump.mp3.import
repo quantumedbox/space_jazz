@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hyperjump.mp3-1d1dd051b9dac5b99f5ab10f7af1a324.mp3str"
+
+[deps]
+
+source_file="res://music/hyperjump.mp3"
+dest_files=[ "res://.import/hyperjump.mp3-1d1dd051b9dac5b99f5ab10f7af1a324.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

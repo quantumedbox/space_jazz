@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sounds/explosion.mp3" type="AudioStream" id=1]
 [ext_resource path="res://scripts/MusicStream.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://music/BOSSV.mp3" type="AudioStream" id=5]
 [ext_resource path="res://sounds/enemy_hit.mp3" type="AudioStream" id=6]
 [ext_resource path="res://sounds/heal.mp3" type="AudioStream" id=7]
+[ext_resource path="res://music/hyperjump.mp3" type="AudioStream" id=8]
 
 [node name="SoundSystem" type="Node"]
 script = ExtResource( 3 )
@@ -15,7 +16,7 @@ script = ExtResource( 3 )
 volume_db = -4.105
 bus = "Music"
 script = ExtResource( 2 )
-_tracks = [ ExtResource( 4 ), ExtResource( 5 ) ]
+_tracks = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ) ]
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

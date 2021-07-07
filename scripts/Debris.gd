@@ -18,6 +18,6 @@ func _process(delta: float) -> void:
 
 
 func collide_with(obj: Object) -> void:
-	if obj is ControllableShip:
+	if obj is ControllableShip and Player.alive:
 		obj.heal(HEAL)
 	queue_free()

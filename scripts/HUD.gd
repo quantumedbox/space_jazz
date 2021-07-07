@@ -13,13 +13,27 @@ const SHAKE_RATE = 10.0
 var _shake: float = 0.0
 var _rate: float = 0.0
 
+const MUSIC_BUS_ID = 1
+const SOUNDS_BUS_ID = 2
+
+const MAX_MUSIC_VOLUME = 6.0
+const MIN_MUSIC_VOLUME = -100.0
+
+const MAX_SOUND_VOLUME = 6.0
+const MIN_SOUND_VOLUME = -100.0
+
 
 func _ready() -> void:
-	$GameOver/Restart.connect('pressed', Player, 'revive')
+	if $GameScreen/PanelContainer/VBoxContainer/HBoxContainer/Music.connect('value_changed', self, '_on_music_volume_change') != OK:
+		push_error('cannot initialize music valume callback')
+	if $GameScreen/PanelContainer/VBoxContainer/VBoxContainer/Sounds.connect('value_changed', self, '_on_sounds_volume_change') != OK:
+		push_error('cannot initialize sound valume callback')
+	if $GameOver/Restart.connect('pressed', Player, 'revive') != OK:
+		push_error('cannot initialize player ship')
 
 
 func _process(delta: float) -> void:
-	$RadiusHint.position = get_viewport().get_mouse_position()
+	$GamePlay/RadiusHint.position = get_viewport().get_mouse_position()
 	_rate -= delta
 	if _rate < 0:
 		_rate = 1 / SHAKE_RATE
@@ -33,30 +47,42 @@ func _process(delta: float) -> void:
 		Player.get_node('Camera').position = -offset			
 
 
+func _on_music_volume_change(value: float) -> void:
+	AudioServer.set_bus_volume_db(
+		MUSIC_BUS_ID, MIN_MUSIC_VOLUME +
+		(MAX_MUSIC_VOLUME - MIN_MUSIC_VOLUME) * (value / 100))
+
+
+func _on_sounds_volume_change(value: float) -> void:
+	AudioServer.set_bus_volume_db(
+		SOUNDS_BUS_ID, MIN_SOUND_VOLUME +
+		(MAX_SOUND_VOLUME - MIN_SOUND_VOLUME) * (value / 100))
+
+
 func change_weapon_icon(id: int) -> void:
 	if id == ICONS.BLASTER_ICON:
-		$WeaponName.text = "BLASTER"
-		$AbilityName.text = "DASH"
-		$Base/WeaponIcon.texture.region = Rect2(0, 16, 16, 16)
+		$GamePlay/WeaponName.text = "BLASTER"
+		$GamePlay/AbilityName.text = "DASH"
+		$GamePlay/WeaponIcon.texture.region = Rect2(0, 16, 16, 16)
 	if id == ICONS.RAILER_ICON:
-		$WeaponName.text = "RAILER"
-		$AbilityName.text = "MAGNET"
-		$Base/WeaponIcon.texture.region = Rect2(16, 16, 16, 16)
+		$GamePlay/WeaponName.text = "RAILER"
+		$GamePlay/AbilityName.text = "MAGNET"
+		$GamePlay/WeaponIcon.texture.region = Rect2(16, 16, 16, 16)
 
 
 func set_weapon_cooldown_percent(percent: float) -> void:
-	$Panel/WeaponCooldown.value = percent * 100
+	$GamePlay/Panel/WeaponCooldown.value = percent * 100
 
 
 func set_ability_cooldown_percent(percent: float) -> void:
-	$Panel/AbilityCooldown.value = percent * 100
+	$GamePlay/Panel/AbilityCooldown.value = percent * 100
 	
 
 func set_health_percent(percent: float) -> void:
-	$HealthBar.value = percent * 100
-	$HealthBarB.value = percent * 100
-	$HealthBar.self_modulate = HEALTH_NONE_COLOR.linear_interpolate(HEALTH_FULL_COLOR, percent)
-	$HealthBarB.self_modulate = HEALTH_NONE_COLOR.linear_interpolate(HEALTH_FULL_COLOR, percent)
+	$GamePlay/HealthBar.value = percent * 100
+	$GamePlay/HealthBarB.value = percent * 100
+	$GamePlay/HealthBar.self_modulate = HEALTH_NONE_COLOR.linear_interpolate(HEALTH_FULL_COLOR, percent)
+	$GamePlay/HealthBarB.self_modulate = HEALTH_NONE_COLOR.linear_interpolate(HEALTH_FULL_COLOR, percent)
 
 
 func add_shake(amount: float) -> void:

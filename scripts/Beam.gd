@@ -29,7 +29,7 @@ func _init_projectile(base, weapon) -> void:
 		self_modulate = weapon.DAMAGE_ENEMIES_COLOR
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not _processed:
 		var collided = []
 		for ray in get_children():
