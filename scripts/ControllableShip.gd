@@ -71,3 +71,9 @@ func revive() -> void:
 	Hud.hide_game_over()
 	health = max_health
 	Hud.set_health_percent(health / max_health)
+
+
+func heal(amount: float) -> void:
+	SoundSystem.play_heal()
+	Hud.set_health_percent(health / max_health)
+	health = clamp(health + amount, 0.0, max_health)

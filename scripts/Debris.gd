@@ -15,3 +15,9 @@ func _process(delta: float) -> void:
 	if lifespan < 0:
 		queue_free()
 	self_modulate.a = lifespan
+
+
+func collide_with(obj: Object) -> void:
+	if obj is ControllableShip:
+		obj.heal(HEAL)
+	queue_free()

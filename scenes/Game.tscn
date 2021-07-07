@@ -34,10 +34,7 @@ position = Vector2( -512, -302 )
 z_index = -1
 
 [node name="Stalker" parent="." instance=ExtResource( 1 )]
-position = Vector2( -280, -128 )
+position = Vector2( -432, -48 )
 
 [node name="Stalker2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1024, 304 )
-
-[node name="Stalker3" parent="." instance=ExtResource( 1 )]
-position = Vector2( -704, 448 )
+position = Vector2( -272, -48 )

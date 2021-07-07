@@ -7,3 +7,17 @@ points = PoolVector2Array( 0, 0, 0, -100 )
 width = 24.0
 default_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 1 )
+
+[node name="RaycastRight" type="RayCast2D" parent="."]
+position = Vector2( 12, 0 )
+enabled = true
+cast_to = Vector2( 0, -100 )
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RaycastLeft" type="RayCast2D" parent="."]
+position = Vector2( -12, 0 )
+enabled = true
+cast_to = Vector2( 0, -100 )
+collide_with_areas = true
+collide_with_bodies = false

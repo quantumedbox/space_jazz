@@ -1,7 +1,7 @@
 class_name Ship
 extends SpaceObj
 
-const debrisScene = preload('res://scenes/Debris.tscn')
+onready var debrisScene = load('res://scenes/Debris.tscn')
 
 # impact of stabilization
 var angular_stability_change: float = 3.2

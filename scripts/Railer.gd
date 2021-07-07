@@ -22,6 +22,7 @@ func _ready() -> void:
 	impulse = 200.0
 	attack_speed = 0.5
 	ability_speed = 0.3
+	damage = 4.0
 
 
 func _process(delta: float) -> void:

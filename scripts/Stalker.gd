@@ -10,7 +10,6 @@ const RANDOM_SIZE_MAX_CHANGE: float = 0.5
 
 
 func _ready() -> void:
-#	._ready()
 	size += (0.5 - randf()) * RANDOM_SIZE_MAX_CHANGE
 	acceleration = 330.0
 	angular_velocity_change = 4.6

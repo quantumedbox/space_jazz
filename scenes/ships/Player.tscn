@@ -17,7 +17,7 @@ type = 3
 weapon_scene = ExtResource( 4 )
 
 [node name="Hint" type="Line2D" parent="." index="0"]
-self_modulate = Color( 1, 1, 1, 0.6 )
+self_modulate = Color( 1, 1, 1, 0.32549 )
 points = PoolVector2Array( 0, 0, 0, -200 )
 width = 1.0
 default_color = Color( 1, 1, 1, 1 )

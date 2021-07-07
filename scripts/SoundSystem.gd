@@ -11,3 +11,7 @@ func play_explosion() -> void:
 
 func play_ping() -> void:
 	$Ping.play()
+
+
+func play_heal() -> void:
+	$Heal.play()
